@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,9 +50,12 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
-        $this->authorize('update', $user);
-
-        return view('users.edit', compact('user'));
+        try {
+            $this->authorize ('update', $user);
+            return view ('users.edit', compact ('user'));
+        } catch (AuthorizationException $authorizationException) {
+            return abort(403, '对不起，你无权访问此页面！');
+        }
     }
 
     public function update(User $user, Request $request)
