@@ -77,7 +77,7 @@ class User extends Authenticatable
     // 关注列表
     public function followings()
     {
-        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id')->withTimestamps();;
     }
 
     // 进行关注
