@@ -13,6 +13,6 @@
 执行数据库迁移  
 `php artisan migrate:refresh --seed`
 
-启动访问
+启动访问  
 `http://weibo.test`
 
